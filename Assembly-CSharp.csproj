@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Ball.cs" />
+    <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\PlayerSideTrigger.cs" />
     <Compile Include="Assets\Scripts\Tempoponent.cs" />
     <Reference Include="UnityEngine">

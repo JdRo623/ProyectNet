@@ -3,9 +3,6 @@ using UnityEngine.UI;
 
 public class Ball : MonoBehaviour {
 
-    [Header("Text object")]
-    public Text text;
-
     [Header("Ball targets")]
     public Transform[] oponentTargets;
     public Transform[] playerTargets;
@@ -25,7 +22,7 @@ public class Ball : MonoBehaviour {
     }
 
     public void Update(){
-        text.text = this.rotation.ToString(); //Updates the text object whit the actual rotation of the ball (Debug code)
+        
     }
 
     /*
