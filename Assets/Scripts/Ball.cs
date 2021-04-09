@@ -10,6 +10,7 @@ public class Ball : MonoBehaviour {
     [Header("Force components")]
     public float horizontal;
     public float vertical;
+    public float depht;
 
     public enum Rotation {Topspin, Underspin, Nospin}; //Enum representing the three rotations
 
@@ -18,11 +19,7 @@ public class Ball : MonoBehaviour {
     new private Rigidbody rigidbody;
 
     public void Start(){
-        rigidbody = gameObject.GetComponent<Rigidbody>();
-    }
-
-    public void Update(){
-        
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     /*
@@ -59,7 +56,7 @@ public class Ball : MonoBehaviour {
         if (player == -1) dir = playerTargets[position].position - transform.position;
         else dir = oponentTargets[position].position - transform.position;
         rigidbody.velocity = new Vector3();
-        rigidbody.AddForce(new Vector3(dir.x * 12, 25, 35 * player));
+        rigidbody.AddForce(new Vector3(dir.x * horizontal, vertical, depht * player));
     }
 
     /*
@@ -71,6 +68,9 @@ public class Ball : MonoBehaviour {
         }
     }
 
+    /*
+     Resets the ball to it´s initial position
+     */
     public void resetBall(){
         rigidbody.velocity = new Vector3();
         rigidbody.angularVelocity = new Vector3();
