@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class Ball : MonoBehaviour {
+
+    [Header("Sound Clips")]
+    public AudioClip tableBounceClip;
 
     [Header("Ball targets")]
     public Transform[] oponentTargets;
@@ -55,12 +58,13 @@ public class Ball : MonoBehaviour {
         if (!rigidbody.useGravity) rigidbody.useGravity = true;
         if (player == -1) dir = playerTargets[position].position - transform.position;
         else dir = oponentTargets[position].position - transform.position;
+        Debug.Log(dir.z);
         rigidbody.velocity = new Vector3();
-        rigidbody.AddForce(new Vector3(dir.x * horizontal, vertical, depht * player));
+        rigidbody.AddForce(new Vector3(dir.x * horizontal, vertical, dir.z * depht));
     }
 
     /*
-    Resets the rotation, velocity, angular velocity and position of the ball to it's initial state when the ball hits the floor object
+    Checks with what object the ball collide
     */
     public void OnCollisionEnter(Collision collider){
         if(collider.transform.name.Equals("Floor")){
@@ -69,8 +73,8 @@ public class Ball : MonoBehaviour {
     }
 
     /*
-     Resets the ball to it´s initial position
-     */
+    Resets the rotation, velocity, angular velocity and position of the ball to it's initial state when the ball hits the floor object
+    */
     public void resetBall(){
         rigidbody.velocity = new Vector3();
         rigidbody.angularVelocity = new Vector3();
